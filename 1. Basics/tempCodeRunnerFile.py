@@ -1,2 +1,1 @@
-print("MY gender is Male")
-print("ABCABCABCABC")
+"My name is", nam

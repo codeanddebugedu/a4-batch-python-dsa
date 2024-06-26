@@ -16,3 +16,6 @@ print(a % b)
 # print(a - b)
 # print(a / b)
 # print(a * b)
+print(2**4)  # 2^4 = 2*2*2*2
+print(5**3)  # 5^3 = 5*5*5
+print(100**0.5)
