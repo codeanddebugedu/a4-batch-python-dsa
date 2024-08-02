@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Student:
     def __init__(self, roll_no: int, name: str, age: int, gender: str, marks=[]):
         self.roll_no = roll_no
@@ -6,8 +9,15 @@ class Student:
         self.gender = gender
         self.marks = marks
 
-    def updateName(self, new_name) -> None:
-        self.name = new_name
+    def updateDetails(self, new_name=None, age=None, gender=None) -> None:
+        # if new_name != None:
+        #     self.name = new_name
+        if new_name:
+            self.name = new_name
+        if age:
+            self.age = age
+        if gender:
+            self.gender = gender
 
     def total(self) -> int:
         # return sum(self.marks)
@@ -24,7 +34,7 @@ class Student:
         print(f"Marks = {self.marks}\n\n")
 
 
-student_details = []
+student_details: List[Student] = []
 
 while True:
     print("1) Add a student")
@@ -49,7 +59,18 @@ while True:
         student_details.append(x)
 
     elif choice == 2:
-        pass
+        rno = int(input("Enter student roll number you want to delete = "))
+        student_index = -1
+        for i in range(0, len(student_details)):
+            if student_details[i].roll_no == rno:
+                student_index = i
+                break
+        if student_index == -1:
+            print("Student not found")
+        else:
+            student_details.pop(student_index)
+            print("Student deleted\n\n")
+
     elif choice == 3:
         if len(student_details) == 0:
             print("No students found")
@@ -57,7 +78,16 @@ while True:
             for stu in student_details:
                 stu.display()
     elif choice == 4:
-        pass
+        rno = int(input("Enter student roll number you want to update details = "))
+        for stu in student_details:
+            if stu.roll_no == rno:
+                n_name = input("Enter new name = ")
+                n_age = int(input("Enter new age = "))
+                n_gender = input("Enter new gender = ")
+                stu.updateDetails(n_name, n_age, n_gender)
+                break
+        else:
+            print("No student found with that roll number")
     elif choice == 5:
         rno = int(input("Enter student roll number you want to search for = "))
         for stu in student_details:
